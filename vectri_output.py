@@ -34,3 +34,4 @@ path1 = '/media/kenz/1B8D1A637BBA134B/Data/calculated/'
 mt_mpi = glob.glob(path1+'trans_MPI-M-MPI-ESM-LR_rcp*_GERICS-REMO2015_*.nc')
 mt_nor = glob.glob(path1+'trans_NCC-NorESM1-M_rcp*_GERICS-REMO2015_*.nc')
 
+vec = xr.open_dataset(path1+'VECTRI_GHA-22_NCC-NorESM1-M_rcp26_r1RICS-REMO2015.nc')
