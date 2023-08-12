@@ -51,3 +51,17 @@ for i in [0.54,0.058]:
 plt.suptitle('MPI-M-MPI-ESM-LR-REMO2015'+' \n \n RCP 2.6', fontweight = 'bold')
 plt.tight_layout()
 
+fig, ax = plt.subplots(2,3, figsize = (10,10),subplot_kw={'projection':crs.PlateCarree()})
+ax = ax.flatten()
+for i, j in enumerate(mt_nor):
+    cb = xr.open_dataset(j).eir.plot(ax = ax[i], add_colorbar = False)
+    ax[i].set_title(j[-12:-2])
+set_fig_params(ax)
+grid = plt.GridSpec(2, 3)
+create_subtitle(fig, grid[1, ::], 'Rcp 8.5 \n')
+for i in [0.54,0.058]:
+    cax = fig.add_axes([1,i,0.02, 0.36])
+    fig.colorbar(cb, cax=cax, orientation='vertical', label='Number of months \n of transmission')
+plt.suptitle('NorESM1-REMO2015'+' \n \n RCP 2.6', fontweight = 'bold')
+plt.tight_layout()
+
