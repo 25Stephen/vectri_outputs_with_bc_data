@@ -65,3 +65,18 @@ for i in [0.54,0.058]:
 plt.suptitle('NorESM1-REMO2015'+' \n \n RCP 2.6', fontweight = 'bold')
 plt.tight_layout()
 
+titles = ['Jan', 'Feb','Mar', 'Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+vec_m = vec.vector.sel(time = slice('1981','2021')).groupby('time.month').mean('time')*1000
+fig, axes = plt.subplots(ncols = 4, nrows = 3, figsize=(10,10), subplot_kw={'projection':crs.PlateCarree()})
+ax = axes.flatten()
+for i in range(0,12):
+    cb=ax[i].contourf(vec_m.longitude, vec_m.latitude, vec_m[i], cmap='jet', transform=crs.PlateCarree())
+    ax[i].set_title(titles[i])
+set_fig_params(ax)
+for i in [0.68,0.36, 0.04]:
+    cax = fig.add_axes([1,i,0.02, 0.25])
+    fig.colorbar(cb, cax=cax, orientation='vertical', label='density $m^{-2}$)')
+plt.suptitle('Vector Density 1990-2020',fontweight = 'bold')
+plt.tight_layout()
+
+
