@@ -29,3 +29,8 @@ def create_subtitle(fig: plt.Figure, grid: SubplotSpec, title: str):
     row.set_frame_on(False)
     row.axis('off')
 path1 = '/media/kenz/1B8D1A637BBA134B/Data/calculated/'
+
+#### Load data
+mt_mpi = glob.glob(path1+'trans_MPI-M-MPI-ESM-LR_rcp*_GERICS-REMO2015_*.nc')
+mt_nor = glob.glob(path1+'trans_NCC-NorESM1-M_rcp*_GERICS-REMO2015_*.nc')
+
