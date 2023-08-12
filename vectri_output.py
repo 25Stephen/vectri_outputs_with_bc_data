@@ -28,4 +28,4 @@ def create_subtitle(fig: plt.Figure, grid: SubplotSpec, title: str):
     # if row==0 row.set_title(f'{title}\n\n\n', fontweight='semibold') else row.set_title(f'{title}\n'
     row.set_frame_on(False)
     row.axis('off')
-
+path1 = '/media/kenz/1B8D1A637BBA134B/Data/calculated/'
