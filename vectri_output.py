@@ -79,4 +79,30 @@ for i in [0.68,0.36, 0.04]:
 plt.suptitle('Vector Density 1990-2020',fontweight = 'bold')
 plt.tight_layout()
 
+titles = ['Jan', 'Feb','Mar', 'Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+def _plt_(var):
+    for i, j in enumerate(vectri):
+        tta = ['1991','2031', '2061']
+        ttb = ['2020','2060', '2090']
+        for x in range(0,3):
+            # data = xr.open_dataset(j)[var].sel(time = slice(tta[x],ttb[x])).groupby('time.month').mean('time')
+            if var=='eir':
+                data = xr.open_dataset(j)[var].sel(time = slice(tta[x],ttb[x])).groupby('time.month').mean('time')
+            else:
+                data = xr.open_dataset(j)[var].sel(time = slice(tta[x],ttb[x])).groupby('time.month').mean('time')*1000
+            fig, axes = plt.subplots(ncols = 4, nrows = 3, figsize=(10,10), subplot_kw={'projection':crs.PlateCarree()})
+            ax = axes.flatten()
+            set_fig_params(ax)
+            for z in range(0,12):
+                cb=ax[z].contourf(data.longitude, data.latitude, data[z], cmap='jet', transform=crs.PlateCarree())
+                ax[z].set_title(titles[z])
+            for i in [0.68,0.36, 0.04]:
+                cax = fig.add_axes([1,i,0.02, 0.25])
+                fig.colorbar(cb, cax=cax, orientation='vertical', label='f'{var}' $m^{-2}$)')
+            plt.suptitle(f'{var}'+' ' +tta[x]+' - '+ttb[x],fontweight = 'bold')
+            plt.tight_layout()
+            plt.savefig(path1+'figures/'+f'{var}'+'_'+j[-41:-18]+tta[x]+'-'+ttb[x]+'.jpeg', bbox_inches='tight')
+
+ 
+
 
